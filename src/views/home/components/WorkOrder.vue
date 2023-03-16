@@ -24,7 +24,7 @@ onBeforeUnmount(() => {
 <template>
   <a-row class="work-order" :gutter="[16, 16]">
     <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#5b8ff9' }">
+      <a-card :bordered="false" hoverable :style="{ background: '#5b8ff9' }">
         <a-row :gutter="[16, 16]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <AppIcon name="DashboardOutlined" :size="70" style="color: #fff" />
@@ -37,7 +37,7 @@ onBeforeUnmount(() => {
       </a-card>
     </a-col>
     <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#61ddaa' }">
+      <a-card :bordered="false" hoverable :style="{ background: '#61ddaa' }">
         <a-row :gutter="[16, 16]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <AppIcon name="CloudServerOutlined" :size="70" style="color: #fff" />
@@ -50,7 +50,7 @@ onBeforeUnmount(() => {
       </a-card>
     </a-col>
     <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#85ce61' }">
+      <a-card :bordered="false" hoverable :style="{ background: '#85ce61' }">
         <a-row :gutter="[16, 16]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <AppIcon name="LinkOutlined" :size="70" style="color: #fff" />
@@ -63,7 +63,7 @@ onBeforeUnmount(() => {
       </a-card>
     </a-col>
     <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#ff7875' }">
+      <a-card :bordered="false" hoverable :style="{ background: '#ff7875' }">
         <a-row :gutter="[16, 16]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <AppIcon name="DisconnectOutlined" :size="70" style="color: #fff" />

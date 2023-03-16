@@ -9,12 +9,14 @@ import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
 import HeaderStore from "@/core/store/layouts/HeaderStore";
 import SettingsStore from "@/core/store/layouts/SettingsStore";
 import Tools from "@/core/utils/Tools";
+import ThemeStore from "@/core/store/layouts/ThemeStore";
 
 const appStore = AppStore();
 const coreStore = CoreStore();
 const menuStore = MenuStore();
 const headerStore = HeaderStore();
 const settingsStore = SettingsStore();
+const themeStore = ThemeStore();
 
 const { isFullscreen, enter, exit, toggle } = useFullscreen();
 
@@ -77,6 +79,16 @@ function jumpPro() {
         <AppIcon name="SettingOutlined" :size="16" />
       </div>
     </a-tooltip>
+
+    <!-- 暗黑 -->
+    <a-tooltip>
+      <template #title>暗黑</template>
+      <div class="hzy-header-btn" @click="themeStore.changeTheme(!themeStore.state.isDark)">
+        <AppIcon name="Sunny" :size="16" v-if="themeStore.state.isDark" />
+        <AppIcon name="MoonNight" :size="16" v-else />
+      </div>
+    </a-tooltip>
+
     <!-- 全屏 -->
     <a-tooltip>
       <template #title>全屏</template>
@@ -84,6 +96,7 @@ function jumpPro() {
         <AppIcon :name="isFullscreen ? 'FullscreenExitOutlined' : 'FullscreenOutlined'" :size="16" />
       </div>
     </a-tooltip>
+
     <div class="hzy-header-btn">
       <a-dropdown>
         <div>

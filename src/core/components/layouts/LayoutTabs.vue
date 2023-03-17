@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, watch, computed } from "vue";
+import { onMounted, watch } from "vue";
 import AppIcon from "@/core/components/AppIcon.vue";
 import router from "@/core/router";
 import TabsStore from "@/core/store/layouts/TabsStore";
@@ -84,10 +84,11 @@ function tabOnChange(activeKey: any) {
 
 <style lang="less" scope>
 .hzy-tabs {
+  padding: 0 16px;
   .ant-tabs-nav {
     margin: 0 !important;
     .ant-tabs-tab-active {
-      background-color: #f0f2f5 !important;
+      // background-color: #f0f2f5 !important;
       .close {
         visibility: visible !important;
       }
@@ -96,7 +97,7 @@ function tabOnChange(activeKey: any) {
 
   .ant-tabs-tab {
     border: 0 !important;
-    background: transparent !important;
+    // background: transparent !important;
 
     .close {
       visibility: hidden;

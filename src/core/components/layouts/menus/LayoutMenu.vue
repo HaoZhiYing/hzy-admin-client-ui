@@ -85,23 +85,26 @@ function onMenuSelected(obj: any) {
 <style lang="less">
 .hzy-menu {
   .ant-menu {
-    background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.backgroundColor") !important;
-    color: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.textColor") !important;
-    .ant-menu-submenu-expand-icon,
-    .ant-menu-submenu-arrow {
-      color: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.textColor") !important;
-    }
+    border-inline-end: 0 !important;
   }
+  // .ant-menu {
+  //   background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.backgroundColor") !important;
+  //   color: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.textColor") !important;
+  //   .ant-menu-submenu-expand-icon,
+  //   .ant-menu-submenu-arrow {
+  //     color: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.textColor") !important;
+  //   }
+  // }
 
-  .ant-menu.ant-menu-dark,
-  .ant-menu-dark .ant-menu-sub,
-  .ant-menu.ant-menu-dark .ant-menu-sub {
-    background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.backgroundColor") !important;
-  }
+  // .ant-menu.ant-menu-dark,
+  // .ant-menu-dark .ant-menu-sub,
+  // .ant-menu.ant-menu-dark .ant-menu-sub {
+  //   background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.backgroundColor") !important;
+  // }
 
-  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.activeBgColor") !important;
-    color: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.activeTextColor") !important;
-  }
+  // .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  //   background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.activeBgColor") !important;
+  //   color: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.activeTextColor") !important;
+  // }
 }
 </style>

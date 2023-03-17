@@ -5,6 +5,7 @@ import AppStore from "../store/AppStore";
 import { MenuItemModel } from "../store/layouts/MenuStore";
 import AppIcon from "@/core/components/AppIcon.vue";
 import AppConsts from "@/utils/AppConsts";
+import ThemeStore from "../store/layouts/ThemeStore";
 
 const props = withDefaults(
   defineProps<{
@@ -36,6 +37,7 @@ const props = withDefaults(
 
 const appStore = AppStore();
 const navs = ref<MenuItemModel[]>([]);
+const themeStore = ThemeStore();
 
 onMounted(() => {
   navs.value = handlePaths();
@@ -71,7 +73,7 @@ function handlePaths() {
 
 <template>
   <div v-if="props.show">
-    <div :class="{ 'pl-16 pr-16 pt-12 pb-16': !classPadding }" class="bg-white">
+    <div :class="{ 'pl-16 pr-16 pt-12 pb-16': !classPadding }" :style="{ background: themeStore.state.isDark ? '#141414' : '#fff', color: themeStore.state.isDark ? '#fff' : '' }">
       <slot name="nav">
         <a-breadcrumb>
           <a-breadcrumb-item v-for="item in navs">

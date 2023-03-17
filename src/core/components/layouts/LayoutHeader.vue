@@ -125,7 +125,6 @@ function jumpPro() {
     width: 100%;
     height: auto !important;
     line-height: normal !important;
-    border-bottom: 1px solid #f0f2f5;
   }
 
   //=======// 头部
@@ -146,7 +145,7 @@ function jumpPro() {
     background: none;
 
     .hzy-header-btn {
-      padding: 0 12px;
+      padding: 0 16px;
       cursor: pointer;
       height: 100%;
       display: inline-flex;

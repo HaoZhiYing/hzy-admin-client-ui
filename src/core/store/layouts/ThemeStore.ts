@@ -10,7 +10,7 @@ interface IState {
 
 export default defineStore("ThemeStore", () => {
   const state = reactive<IState>({
-    isDark: true, // 默认 暗黑
+    isDark: false, // 默认 暗黑
   });
 
   const getAlgorithm = (themes: ThemeName[] = []) =>
@@ -24,9 +24,7 @@ export default defineStore("ThemeStore", () => {
       return antdTheme.defaultAlgorithm;
     });
 
-  const themeConfig = computed(() => {
-    return { algorithm: getAlgorithm([state.isDark ? "dark" : "light"]) };
-  });
+  const themeConfig = computed(() => (state.isDark ? getAlgorithm(["dark"]) : getAlgorithm(["light"])));
 
   /**
    * 主题改变
@@ -34,6 +32,7 @@ export default defineStore("ThemeStore", () => {
    */
   function changeTheme(isDark: boolean) {
     state.isDark = isDark;
+    console.log(state.isDark);
   }
 
   return {

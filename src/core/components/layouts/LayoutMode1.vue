@@ -7,7 +7,7 @@ import AppStore from "@/core/store/AppStore";
 import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
 import CoreStore from "@/core/store/layouts/CoreStore";
 import { computed } from "vue";
-import LayoutIframe from "./LayoutIframe.vue";
+import AppConsts from "@/utils/AppConsts";
 
 const tabsStore = TabsStore();
 const appStore = AppStore();
@@ -39,12 +39,10 @@ let left = computed(() => {
           <router-view v-slot="{ Component, route }">
             <!-- <transition name="fade" mode="out-in"> -->
             <keep-alive :include="tabsStore.state.cacheViews">
-              <component :is="Component" :key="route.fullPath" v-show="route.meta.mode == 1" />
+              <component :is="Component" :key="route.fullPath" />
             </keep-alive>
             <!-- </transition> -->
           </router-view>
-          <!-- iframe 处理 -->
-          <LayoutIframe />
         </div>
 
         <!-- 返回顶部 -->
@@ -58,18 +56,16 @@ let left = computed(() => {
 <style lang="less">
 .hzy-layout {
   .ant-layout {
-    background-color: #ffffff;
+    // background-color: #ffffff;
 
     .ant-layout-sider {
       overflow: auto;
       left: 0;
       z-index: 10;
-      box-shadow: 1px 0px 1px 0 #f0f2f5;
     }
 
     .ant-layout-content {
       position: relative;
-      background-color: #f0f2f5;
     }
 
     .hzy-header-content {
@@ -78,13 +74,13 @@ let left = computed(() => {
       right: 0;
     }
 
-    .hzy-ground-glass {
-      // 透明样式
-      background-image: radial-gradient(transparent 1px, #ffffff 1px);
-      background-size: 4px 4px;
-      backdrop-filter: saturate(50%) blur(4px);
-      -webkit-backdrop-filter: saturate(50%) blur(4px);
-    }
+    // .hzy-ground-glass {
+    //   // 透明样式
+    //   background-image: radial-gradient(transparent 1px, #ffffff 1px);
+    //   background-size: 4px 4px;
+    //   backdrop-filter: saturate(50%) blur(4px);
+    //   -webkit-backdrop-filter: saturate(50%) blur(4px);
+    // }
   }
 }
 </style>

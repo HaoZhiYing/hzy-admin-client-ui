@@ -73,24 +73,26 @@ function handlePaths() {
 
 <template>
   <div v-if="props.show">
-    <div :class="{ 'pl-16 pr-16 pt-12 pb-16': !classPadding }" :style="{ background: themeStore.state.isDark ? '#141414' : '#fff', color: themeStore.state.isDark ? '#fff' : '' }">
-      <slot name="nav">
-        <a-breadcrumb>
-          <a-breadcrumb-item v-for="item in navs">
-            <AppIcon :name="item.icon" v-if="item.icon" />
-            <span>{{ item.name }}</span>
-          </a-breadcrumb-item>
-        </a-breadcrumb>
-      </slot>
-      <!-- <div class="mt-16">
+    <a-card :bordered="false" :bodyStyle="{ padding: 0 }">
+      <div :class="{ 'pl-16 pr-16 pt-16 pb-16': !classPadding }" :style="{ background: themeStore.state.isDark ? '#141414' : '#fff', color: themeStore.state.isDark ? '#fff' : '' }">
+        <slot name="nav">
+          <a-breadcrumb>
+            <a-breadcrumb-item v-for="item in navs">
+              <AppIcon :name="item.icon" v-if="item.icon" />
+              <span>{{ item.name }}</span>
+            </a-breadcrumb-item>
+          </a-breadcrumb>
+        </slot>
+        <!-- <div class="mt-16">
         <span style="font-weight: bold; font-size: 20px; color: rgba(0, 0, 0, 0.85)">{{ router.currentRoute.value.meta.title }}</span>
       </div> -->
-      <slot name="describe">
-        <div class="mt-8" v-if="props.describe">
-          <span>{{ props.describe }}</span>
-        </div>
-      </slot>
-    </div>
+        <slot name="describe">
+          <div class="mt-8" v-if="props.describe">
+            <span>{{ props.describe }}</span>
+          </div>
+        </slot>
+      </div>
+    </a-card>
     <div :class="{ 'p-16': !bodyClassPadding }" :style="{ ...(props.bodyStyle ?? {}) }">
       <slot></slot>
     </div>

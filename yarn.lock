@@ -1786,10 +1786,10 @@ ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-ant-design-vue@4.0.0-alpha.1:
-  version "4.0.0-alpha.1"
-  resolved "https://registry.npmmirror.com/ant-design-vue/-/ant-design-vue-4.0.0-alpha.1.tgz#5f751d2cbe6ca1c1f329e779894dc5b3e0fa33d6"
-  integrity sha512-u/kLP8VwY+W14kY6teJRQ6vqw+ZZTyxHCPYx+HU5Bckd+YNZxH+ThQLAWvnQGGkE91Whaym2GIvqdbYwhCGGPw==
+ant-design-vue@4.0.0-alpha.2:
+  version "4.0.0-alpha.2"
+  resolved "https://registry.npmmirror.com/ant-design-vue/-/ant-design-vue-4.0.0-alpha.2.tgz#fea511a9153ed095f1bf00e3098f41d71c9a7f90"
+  integrity sha512-zzkhkzhmbcOcTalPjci2WrDxFkXGuFiHYBlYAPtSNbTh6eqN4qr3btNBaTuTbS/BWhzmtjfetZrLbf6uXhmjuw==
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons-vue" "^6.1.0"

@@ -85,19 +85,22 @@ function tabOnChange(activeKey: any) {
 <style lang="less" scope>
 .hzy-tabs {
   padding: 0 16px;
+
   .ant-tabs-nav {
     margin: 0 !important;
     .ant-tabs-tab-active {
-      // background-color: #f0f2f5 !important;
       .close {
         visibility: visible !important;
       }
     }
   }
 
+  .ant-tabs-nav::before {
+    border-bottom: 0;
+  }
+
   .ant-tabs-tab {
     border: 0 !important;
-    // background: transparent !important;
 
     .close {
       visibility: hidden;

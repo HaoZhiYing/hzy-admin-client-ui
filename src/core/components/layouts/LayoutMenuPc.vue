@@ -36,5 +36,6 @@ const _isDark = computed(() => themeStore.state.isDark);
 .hzy-logo {
   font-weight: bold;
   font-size: 20px;
+  min-height: 90px;
 }
 </style>

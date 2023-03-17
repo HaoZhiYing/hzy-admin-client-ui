@@ -19,8 +19,8 @@ const year = new Date().getFullYear();
 
 //计算与左侧边距
 let left = computed(() => {
-  if (coreStore.state.isMobile) return 0;
-  return menuStore.state.width + (menuStore.state.menuMode == EMenuMode.left ? menuStore.state.leftModeWidth : 0);
+  if (coreStore.state.isMobile) return 0 + "px";
+  return menuStore.state.width + (menuStore.state.menuMode == EMenuMode.left ? menuStore.state.leftModeWidth : 0) + "px";
 });
 </script>
 
@@ -29,11 +29,15 @@ let left = computed(() => {
     <!-- 菜单 -->
     <LayoutSider />
     <!-- 头部 -->
-    <div class="hzy-header-content hzy-ground-glass" :style="{ left: left + 'px' }">
+    <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="hzy-header-content hzy-ground-glass" :style="{ left, borderRadius: 0 }">
       <LayoutHeaderVue />
       <LayoutTabsVue />
-    </div>
-    <a-layout :style="{ marginLeft: left + 'px' }">
+    </a-card>
+    <!-- <div class="hzy-header-content hzy-ground-glass" :style="{ left: left + 'px' }">
+      <LayoutHeaderVue />
+      <LayoutTabsVue />
+    </div> -->
+    <a-layout :style="{ marginLeft: left }">
       <a-layout-content :style="{ paddingTop: '88px' }">
         <div style="min-height: calc(80vh); overflow: hidden">
           <router-view v-slot="{ Component, route }">
@@ -72,6 +76,7 @@ let left = computed(() => {
       position: fixed;
       z-index: 9;
       right: 0;
+      top: 0;
     }
 
     // .hzy-ground-glass {

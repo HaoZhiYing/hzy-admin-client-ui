@@ -8,6 +8,7 @@ import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
 import CoreStore from "@/core/store/layouts/CoreStore";
 import { computed } from "vue";
 import AppConsts from "@/utils/AppConsts";
+import LayoutIframe from "./LayoutIframe.vue";
 
 const tabsStore = TabsStore();
 const appStore = AppStore();
@@ -33,20 +34,18 @@ let left = computed(() => {
       <LayoutHeaderVue />
       <LayoutTabsVue />
     </a-card>
-    <!-- <div class="hzy-header-content hzy-ground-glass" :style="{ left: left + 'px' }">
-      <LayoutHeaderVue />
-      <LayoutTabsVue />
-    </div> -->
     <a-layout :style="{ marginLeft: left }">
       <a-layout-content :style="{ paddingTop: '88px' }">
         <div style="min-height: calc(80vh); overflow: hidden">
           <router-view v-slot="{ Component, route }">
             <!-- <transition name="fade" mode="out-in"> -->
             <keep-alive :include="tabsStore.state.cacheViews">
-              <component :is="Component" :key="route.fullPath" />
+              <component :is="Component" :key="route.fullPath" v-if="route.meta.mode == 1" />
             </keep-alive>
             <!-- </transition> -->
           </router-view>
+          <!-- iframe 处理 -->
+          <LayoutIframe />
         </div>
 
         <!-- 返回顶部 -->

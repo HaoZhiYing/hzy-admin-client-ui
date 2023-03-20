@@ -30,13 +30,9 @@ let visible = ref(false);
           <WorkOrderStatistics />
         </a-col>
         <a-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-          <div class="mb-16">
-            <a href="https://gitee.com/hzy6/HzyAdmin/stargazers" target="_black"><img src="https://gitee.com/hzy6/HzyAdmin/badge/star.svg?theme=dark" alt="star" /></a>
-          </div>
-          <!-- <div class="mb-16">
-            <a :href="appConsts.domainName + '/ui'" target="_black">预览 ElementPlus+Vite+Ts 版本</a>
-          </div> -->
-          <img src="https://gitee.com/hzy6/HzyAdmin/widgets/widget_card.svg?colors=eae9d7,2e2f29,272822,484a45,eae9d7,747571" style="width: 100%; height: 320px" />
+          <a href="https://gitee.com/hzy6/HzyAdmin/stargazers" target="_black">
+            <img src="https://gitee.com/hzy6/HzyAdmin/widgets/widget_card.svg?colors=eae9d7,2e2f29,272822,484a45,eae9d7,747571" style="width: 100%; height: 320px" />
+          </a>
         </a-col>
       </a-row>
     </div>

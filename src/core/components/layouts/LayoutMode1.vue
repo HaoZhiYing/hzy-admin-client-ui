@@ -30,7 +30,7 @@ let left = computed(() => {
     <!-- 菜单 -->
     <LayoutSider />
     <!-- 头部 -->
-    <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="hzy-header-content hzy-ground-glass" :style="{ left, borderRadius: 0 }">
+    <a-card :bordered="false" :bodyStyle="{ padding: 0 }" class="hzy-header-content hzy-ground-glass" :style="{ left, borderRadius: 0, boxShadow: 'none' }">
       <LayoutHeaderVue />
       <LayoutTabsVue />
     </a-card>
@@ -76,6 +76,7 @@ let left = computed(() => {
       z-index: 9;
       right: 0;
       top: 0;
+      padding: 0 16px;
     }
 
     // .hzy-ground-glass {

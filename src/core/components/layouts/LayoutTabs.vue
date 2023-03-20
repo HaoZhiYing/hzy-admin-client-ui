@@ -84,8 +84,6 @@ function tabOnChange(activeKey: any) {
 
 <style lang="less" scope>
 .hzy-tabs {
-  padding: 0 16px;
-
   .ant-tabs-nav {
     margin: 0 !important;
     .ant-tabs-tab-active {
@@ -100,7 +98,7 @@ function tabOnChange(activeKey: any) {
   }
 
   .ant-tabs-tab {
-    border: 0 !important;
+    // border: 0 !important;
 
     .close {
       visibility: hidden;

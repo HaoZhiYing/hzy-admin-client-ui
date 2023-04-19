@@ -50,9 +50,11 @@ function getUrl(urlDev: string, urlPro: string, menuId: number) {
 <template>
   <a-spin :spinning="loading">
     <div v-for="(item, index) in tabsIframe" :key="item.path">
-      <div v-show="item.path == $route.path" :key="item.path">
-        <iframe ref="iframe" :src="getUrl(item.meta.moduleUrl!, item.meta.moduleUrlPro!, item.meta.menuId!)" frameBorder="0" @load="loading = false" :key="item.path"></iframe>
-      </div>
+      <transition name="fade-transform" mode="out-in">
+        <div v-show="item.path == $route.path" :key="item.path">
+          <iframe ref="iframe" :src="getUrl(item.meta.moduleUrl!, item.meta.moduleUrlPro!, item.meta.menuId!)" frameBorder="0" @load="loading = false" :key="item.path"></iframe>
+        </div>
+      </transition>
     </div>
   </a-spin>
 </template>

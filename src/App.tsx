@@ -18,18 +18,11 @@ export default defineComponent({
             <ConfigProvider
                 locale={zhCN}
                 theme={{
-                    token: {
-                        colorPrimary: '#2f54eb',
-                        // colorBgLayout: "red",
-                        // paddingXXS: 16,
-                        // paddingXS: 16,
-                        // paddingSM: 16,
-                        // padding: 16,
-                        // paddingMD: 16,
-                        // paddingLG: 16,
-                        // paddingXL: 16,
-                    },
-                    algorithm: themeStore.themeConfig
+                    token: themeStore.state.tokenTheme,
+                    algorithm: themeStore.themeConfig,
+                    components: {
+                        Menu: { ...themeStore.state.menuTheme }
+                    }
                 }}>
                 <Spin spinning={loading.value} >
                     <router-view></router-view>

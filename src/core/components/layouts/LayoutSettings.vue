@@ -3,11 +3,13 @@ import LayoutStore from "@/core/store/layouts/CoreStore";
 import MenuStore from "@/core/store/layouts/MenuStore";
 import HeaderStore from "@/core/store/layouts/HeaderStore";
 import SettingsStore from "@/core/store/layouts/SettingsStore";
+import ThemeStore from "@/core/store/layouts/ThemeStore";
 
 const layoutStore = LayoutStore();
 const menuStore = MenuStore();
 const headerStore = HeaderStore();
 const settingsStore = SettingsStore();
+const themeStore = ThemeStore();
 </script>
 
 <template>
@@ -22,8 +24,8 @@ const settingsStore = SettingsStore();
     <a-divider>菜单颜色</a-divider>
     <div class="mt-16 text-center">
       <div class="hzy-skin-list mb-5 text-center">
-        <template v-for="(item, index) in menuStore.menuCustomThemes" :key="index">
-          <div class="hzy-skin-item" style="border: 1px solid #67c23a" :style="{ backgroundColor: item.backgroundColor }" @click="menuStore.onChangeMenuCustomThemesIndex(index)"></div>
+        <template v-for="(item, index) in themeStore.menuThemeList" :key="index">
+          <div class="hzy-skin-item" style="border: 1px solid #67c23a" :style="{ backgroundColor: item.colorItemBg }" @click="themeStore.changeMenuTheme(index)"></div>
         </template>
       </div>
     </div>

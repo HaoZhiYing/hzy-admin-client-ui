@@ -7,7 +7,6 @@ import AppStore from "@/core/store/AppStore";
 import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
 import CoreStore from "@/core/store/layouts/CoreStore";
 import { computed } from "vue";
-import AppConsts from "@/utils/AppConsts";
 import LayoutIframe from "./LayoutIframe.vue";
 
 const tabsStore = TabsStore();
@@ -38,11 +37,11 @@ let left = computed(() => {
       <a-layout-content :style="{ paddingTop: '88px' }">
         <div style="min-height: calc(80vh); overflow: hidden">
           <router-view v-slot="{ Component, route }">
-            <!-- <transition name="fade" mode="out-in"> -->
-            <keep-alive :include="tabsStore.state.cacheViews">
-              <component :is="Component" :key="route.fullPath" v-if="route.meta.mode == 1" />
-            </keep-alive>
-            <!-- </transition> -->
+            <transition name="fade-transform" mode="out-in">
+              <keep-alive :include="tabsStore.state.cacheViews">
+                <component :is="Component" :key="route.fullPath" v-if="route.meta.mode == 1" />
+              </keep-alive>
+            </transition>
           </router-view>
           <!-- iframe 处理 -->
           <LayoutIframe />
@@ -76,7 +75,7 @@ let left = computed(() => {
       z-index: 9;
       right: 0;
       top: 0;
-      padding: 0 16px;
+      padding: 0;
     }
 
     // .hzy-ground-glass {

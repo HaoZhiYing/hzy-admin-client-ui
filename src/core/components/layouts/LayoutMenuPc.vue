@@ -1,33 +1,27 @@
 <script lang="ts" setup>
-import { computed } from "vue";
-import CoreStore from "@/core/store/layouts/CoreStore";
 import MenuStore from "@/core/store/layouts/MenuStore";
-import AppStore from "@/core/store/AppStore";
 import LayoutMenuVue from "./menus/LayoutMenu.vue";
-import AppConsts from "@/utils/AppConsts";
-import ThemeStore from "@/core/store/layouts/ThemeStore";
+import { theme } from "ant-design-vue";
+import LayoutLogoVue from "./LayoutLogo.vue";
 
-const coreStore = CoreStore();
 const menuStore = MenuStore();
-const appStore = AppStore();
-const themeStore = ThemeStore();
-const _isDark = computed(() => themeStore.state.isDark);
+
+const { useToken } = theme;
+const { token } = useToken();
 </script>
 
 <template>
   <a-layout-sider
     hasSider
+    :theme="'light'"
     v-model:collapsed="menuStore.state.isCollapse"
     :collapsedWidth="menuStore.state.width"
-    :theme="menuStore.themeType()"
     :width="menuStore.state.width"
-    style="overflow: hidden; overflow-y: auto; height: 100vh"
-    :style="{ backgroundColor: menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.backgroundColor }"
     class="hzy-menu"
+    style="overflow: hidden; overflow-y: auto; height: 100vh"
+    :style="{ backgroundColor: token.Menu?.colorItemBg }"
   >
-    <div class="hzy-logo" :style="{ color: _isDark ? '#ffffff' : '' }" v-if="!menuStore.state.isCollapse">
-      {{ AppConsts.appTitle }}
-    </div>
+    <LayoutLogoVue />
     <LayoutMenuVue />
   </a-layout-sider>
 </template>

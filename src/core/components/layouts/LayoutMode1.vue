@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { computed } from "vue";
 import LayoutHeaderVue from "./LayoutHeader.vue";
 import LayoutTabsVue from "./LayoutTabs.vue";
 import LayoutSider from "./LayoutSider.vue";
@@ -6,13 +7,14 @@ import TabsStore from "@/core/store/layouts/TabsStore";
 import AppStore from "@/core/store/AppStore";
 import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
 import CoreStore from "@/core/store/layouts/CoreStore";
-import { computed } from "vue";
 import LayoutIframe from "./LayoutIframe.vue";
+import ThemeStore from "@/core/store/layouts/ThemeStore";
 
 const tabsStore = TabsStore();
 const appStore = AppStore();
 const menuStore = MenuStore();
 const coreStore = CoreStore();
+const themeStore = ThemeStore();
 
 //当前年份
 const year = new Date().getFullYear();
@@ -22,6 +24,7 @@ let left = computed(() => {
   if (coreStore.state.isMobile) return 0 + "px";
   return menuStore.state.width + (menuStore.state.menuMode == EMenuMode.left ? menuStore.state.leftModeWidth : 0) + "px";
 });
+
 </script>
 
 <template>

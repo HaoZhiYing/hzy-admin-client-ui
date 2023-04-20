@@ -1,13 +1,16 @@
 <script lang="ts" setup>
+import { computed } from "vue";
+import { theme } from "ant-design-vue";
 import MenuStore from "@/core/store/layouts/MenuStore";
 import LayoutMenuVue from "./menus/LayoutMenu.vue";
-import { theme } from "ant-design-vue";
 import LayoutLogoVue from "./LayoutLogo.vue";
+import ThemeStore from "@/core/store/layouts/ThemeStore";
 
 const menuStore = MenuStore();
-
+const themeStore = ThemeStore();
 const { useToken } = theme;
 const { token } = useToken();
+
 </script>
 
 <template>

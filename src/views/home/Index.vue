@@ -79,7 +79,7 @@ let visible = ref(false);
       </a-row>
     </div>
     <!-- 抽屉 -->
-    <a-drawer v-model:visible="visible" style="color: red" title="更多" placement="right" width="90%">
+    <a-drawer v-model:visible="visible" title="更多" placement="right" width="90%">
       <Home1 />
     </a-drawer>
   </PageContainer>

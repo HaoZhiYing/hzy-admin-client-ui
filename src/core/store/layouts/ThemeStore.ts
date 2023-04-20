@@ -1,18 +1,43 @@
 import { defineStore } from "pinia";
-import { computed, reactive } from "vue";
+import { computed, reactive, onMounted } from "vue";
 import { theme as antdTheme } from "ant-design-vue";
 import AppConsts from "@/utils/AppConsts";
-import { onMounted } from "vue";
+// import Img0 from "@/assets/images/login-1.jpg";
+// import Img1 from "@/assets/images/bg-1.jpg";
+// import Img2 from "@/assets/images/bg-2.jpg";
+// import Img3 from "@/assets/images/bg-3.jpg";
+// import Img4 from "@/assets/images/bg-4.jpg";
+// import Img5 from "@/assets/images/bg-5.jpg";
+// import Img6 from "@/assets/images/bg-6.jpg";
+// import Img7 from "@/assets/images/bg-7.jpg";
+// import Img8 from "@/assets/images/bg-8.jpg";
+// import Img9 from "@/assets/images/bg-9.jpg";
+// import Img10 from "@/assets/images/bg-10.jpg";
+// import Img11 from "@/assets/images/bg-11.jpg";
+// import Img12 from "@/assets/images/bg-12.jpg";
 
 export type ThemeName = "light" | "dark" | "compact";
 
 interface IState {
+  /**
+   * 是否暗黑
+   */
   isDark: boolean;
-  tokenTheme?: ITokenTheme;
+  /**
+   * 全局 主题
+   */
+  tokenTheme?: TokenTheme;
+  /**
+   * 菜单主题
+   */
   menuTheme: IMenuTheme;
+  /**
+   * 背景图索引
+   */
+  backgroundImageIndex: number;
 }
 
-class ITokenTheme {
+export class TokenTheme {
   colorPrimary: string = "#2f54eb";
   //
   // colorBgLayout: "red",
@@ -44,7 +69,7 @@ interface IMenuTheme {
 }
 
 export default defineStore("ThemeStore", () => {
-  var tokenTheme = new ITokenTheme();
+  var tokenTheme = new TokenTheme();
 
   const menuThemeList: IMenuTheme[] = [
     // 白色
@@ -52,7 +77,6 @@ export default defineStore("ThemeStore", () => {
     // antd 暗色菜单
     {
       colorItemBg: "#001529",
-      colorItemBgSelected: tokenTheme.colorPrimary,
       colorItemBgHover: "rgba(0, 0, 0, 0.06)",
       colorItemText: "#ffffffa6",
       colorItemTextHover: "#ffffff",
@@ -61,7 +85,6 @@ export default defineStore("ThemeStore", () => {
     // element+ 官方自定义颜色风格
     {
       colorItemBg: "#545c64",
-      colorItemBgSelected: tokenTheme.colorPrimary,
       colorItemBgHover: "rgba(0, 0, 0, 0.06)",
       colorItemText: "#ffffffa6",
       colorItemTextHover: "#fff",
@@ -70,7 +93,6 @@ export default defineStore("ThemeStore", () => {
     // iview 菜单风格
     {
       colorItemBg: "#191a23",
-      colorItemBgSelected: tokenTheme.colorPrimary,
       colorItemBgHover: "rgba(0, 0, 0, 0.06)",
       colorItemText: "#ffffffa6",
       colorItemTextHover: "#fff",
@@ -78,10 +100,34 @@ export default defineStore("ThemeStore", () => {
     },
   ];
 
+  // 品牌色集合
+  const colorPrimaryList: string[] = ["#2f54eb", "#1677FF", "#5A54F9", "#9E339F", "#ED4192", "#E0282E", "#F4801A", "#F2BD27", "#00B96B", "#393D49", "#009688", "#63BA79"];
+
+  // /**
+  //  * 背景图片
+  //  */
+  // const bgImageList: string[] = [
+  //   Img0,
+  //   Img1,
+  //   Img2,
+  //   Img3,
+  //   Img4,
+  //   Img5,
+  //   Img6,
+  //   Img7,
+  //   // Img8,
+  //   // Img9,
+  //   // Img10,
+  //   // Img11,
+  //   // Img12,
+  // ];
+
+  // 状态定义
   const state = reactive<IState>({
     isDark: false,
     tokenTheme,
-    menuTheme: menuThemeList[3],
+    menuTheme: {},
+    backgroundImageIndex: -1,
   });
 
   onMounted(() => {
@@ -89,6 +135,10 @@ export default defineStore("ThemeStore", () => {
     state.menuTheme = menuThemeList[index];
     let isDark = ThemeCacheUtil.getIsDark();
     state.isDark = isDark;
+    let colorPrimary = ThemeCacheUtil.getColorPrimary();
+    if (colorPrimary) {
+      state.tokenTheme!.colorPrimary = colorPrimary;
+    }
   });
 
   //
@@ -123,12 +173,23 @@ export default defineStore("ThemeStore", () => {
     ThemeCacheUtil.setMenuCustomThemesIndex(index);
   }
 
+  /**
+   * 改变主色 品牌色
+   */
+  function changeColorPrimary(color: string) {
+    state.tokenTheme!.colorPrimary = color;
+    ThemeCacheUtil.setColorPrimary(color);
+  }
+
   return {
     state,
     themeConfig,
     menuThemeList,
+    colorPrimaryList,
+    // bgImageList,
     changeTheme,
     changeMenuTheme,
+    changeColorPrimary,
   };
 });
 
@@ -169,5 +230,21 @@ class ThemeCacheUtil {
   static getIsDark() {
     var result = localStorage.getItem(`${AppConsts.appPrefix}_theme_is_dark`);
     return result == "1";
+  }
+
+  /**
+   * 保存品牌色
+   */
+  static setColorPrimary(color: string) {
+    localStorage.setItem(`${AppConsts.appPrefix}_color_primary`, color);
+  }
+
+  /**
+   * 读取品牌色
+   * @returns
+   */
+  static getColorPrimary() {
+    var result = localStorage.getItem(`${AppConsts.appPrefix}_color_primary`);
+    return result;
   }
 }

@@ -4,6 +4,7 @@ import AppIcon from "@/core/components/AppIcon.vue";
 import router from "@/core/router";
 import Tools from "@/core/utils/Tools";
 import AppStore from "@/core/store/AppStore";
+import LoginService from "@/services/LoginService";
 
 const state = reactive({
   userName: "admin",
@@ -23,13 +24,20 @@ onMounted(() => {
 /**
  * 检查账户并登录
  */
-function check() {
+async function check() {
   if (!state.userName) return Tools.message.warning("用户名不能为空!");
   if (!state.userPassword) return Tools.message.warning("密码不能为空!");
-  loading.value = true;
-  router.push("/").then(() => {
+
+  try {
+    loading.value = true;
+    const result = await LoginService.login(state.userName, state.userPassword);
     loading.value = false;
-  });
+    if (result.code != 1) return;
+    Tools.setAuthorization(result.data.token);
+    router.push("/");
+  } catch (error) {
+    loading.value = false;
+  }
 }
 
 /**
@@ -89,10 +97,8 @@ body {
   align-items: center;
   height: 100vh;
   //可以解开一下注解 放置一个背景图片
-  background: url("../assets/images/login.jpg") no-repeat;
-  // background: url("../assets/undraw_Tree_swing_re_pqee.png") no-repeat;
+  background: url("../assets/images/login-1.jpg") no-repeat;
   background-size: cover;
-  // background: #f0f2f5 url("../assets/background.svg") no-repeat 50%;
 
   .login-card {
     height: 450px;

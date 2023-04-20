@@ -213,7 +213,6 @@ const rowSelection = computed(() => {
       </a-row>
     </a-card>
 
-    <!-- <a-card :bordered="false" :bodyStyle="{ padding: 0 }"> -->
     <!-- 表格 -->
     <div>
       <slot name="table">
@@ -224,6 +223,7 @@ const rowSelection = computed(() => {
           :pagination="
             props.isPagination
               ? {
+                  size: 'default',
                   pageSize: tableConfig.size,
                   total: tableConfig.total,
                   current: tableConfig.page,
@@ -246,6 +246,5 @@ const rowSelection = computed(() => {
         </a-table>
       </slot>
     </div>
-    <!-- </a-card> -->
   </div>
 </template>

@@ -1,17 +1,15 @@
-import { createRouter, createWebHashHistory, Router, useRouter as appRouter, useRoute as appRoute } from 'vue-router'
-import defaultRouters from '@/core/router/DefaultRouters';
-import { genDynamicRouters } from '@/core/router/DynamicRouters';
-import Tools from '@/core/utils/Tools';
-//菜单数据
-import menuTreeList from "@/core/mock/MenuData";
-import AppStore from '../store/AppStore';
-import { getAuthorityByRouteMeta } from '@/utils/Authority';
-import AppConsts from '@/utils/AppConsts';
+import { createRouter, createWebHashHistory, Router, useRouter as appRouter, useRoute as appRoute } from "vue-router";
+import defaultRouters from "@/core/router/DefaultRouters";
+import { genDynamicRouters } from "@/core/router/DynamicRouters";
+import Tools from "@/core/utils/Tools";
+import AppStore from "../store/AppStore";
+import { getAuthorityByRouteMeta } from "@/utils/Authority";
+import AppConsts from "@/utils/AppConsts";
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: defaultRouters,
-  scrollBehavior: () => ({ top: 0 }),//to, from, savedPosition
+  scrollBehavior: () => ({ top: 0 }), //to, from, savedPosition
 });
 
 //监听路由
@@ -25,16 +23,21 @@ router.beforeEach((to, from, next) => {
   }
 
   //动态路由
-  var hasRoute = genDynamicRouters(menuTreeList);
-  if (!hasRoute) {
-    //
-    console.log('router-cmd', router.getRoutes(), router.options.routes, to.fullPath);
-    //如果初次add路由需要一下代码重新加载
-    return next(to.fullPath);
-  }
-
-  next();
-
+  appStore.getUserInfo().then((data: any) => {
+    //创建动态路由
+    let hasRoute = genDynamicRouters(data.menus);
+    appStore.state.userInfo.menus = data.menus;
+    if (hasRoute) {
+      if (getAuthorityByRouteMeta(data, to.meta)) {
+        next();
+      } else {
+        Tools.notice.error(AppConsts.noPowerMessage);
+        next(from.fullPath);
+      }
+    } else {
+      next(to.fullPath);
+    }
+  });
 });
 
 router.afterEach(() => {
@@ -46,7 +49,7 @@ export default router;
 
 /**
  * 注册路由
- * @returns 
+ * @returns
  */
 export function registerRouter(): Router {
   return router;
@@ -54,7 +57,7 @@ export function registerRouter(): Router {
 
 /**
  * 使用路由
- * @returns 
+ * @returns
  */
 export function useRouter() {
   return appRouter();
@@ -62,7 +65,7 @@ export function useRouter() {
 
 /**
  * 使用路由
- * @returns 
+ * @returns
  */
 export function useRoute() {
   return appRoute();

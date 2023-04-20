@@ -3,8 +3,6 @@ import { RouteMeta, RouteRecordRaw } from 'vue-router';
 import router from '@/core/router';
 import AppConsts from '../../utils/AppConsts';
 import Tools from '../utils/Tools';
-import { defineAsyncComponent, defineComponent, h } from 'vue';
-import { type } from 'os';
 
 //导出所有的 vue 模块
 let dynamicRouters: Array<RouteRecordRaw> = [];

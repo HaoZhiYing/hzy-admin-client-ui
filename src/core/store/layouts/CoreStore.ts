@@ -48,7 +48,7 @@ export default defineStore("LayoutStore", () => {
       nextTick(() => {
         router.push("/redirect" + fullPath);
       });
-    }, 300);
+    }, 100);
   }
 
   return {
